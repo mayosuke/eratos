@@ -7,6 +7,6 @@ class Eratos
 end
 
 if __FILE__ == $0
-  puts Eratos.calc_eratos_for(ARGV)
+  print Eratos.calc_eratos_for(ARGV)
 end
 
