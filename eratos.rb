@@ -17,7 +17,25 @@ class Eratos
   end
 end
 
+def valid_args?(args)
+  if ARGV.length == 0
+    false
+  elsif ARGV.length > 1
+    false
+  elsif Integer(args[0]) < 2
+    false
+  else
+    true
+  end
+rescue
+  false
+end
+
 if __FILE__ == $0
-  print Eratos.calc_eratos_for(Integer(ARGV[0])).join(', ')
+  if valid_args?(ARGV)
+    print Eratos.calc_eratos_for(Integer(ARGV[0])).join(', ')
+  else
+    print ''
+  end
 end
 
