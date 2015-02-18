@@ -3,16 +3,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/../eratos.rb')
 
 describe Eratos do
-  specify { expect(`ruby ./eratos.rb 2`).to eq "2"}
-  specify { expect(`ruby ./eratos.rb 3`).to eq "2, 3"}
-  specify { expect(`ruby ./eratos.rb 4`).to eq "2, 3"}
-  specify { expect(`ruby ./eratos.rb 5`).to eq "2, 3, 5"}
-  specify { expect(`ruby ./eratos.rb 6`).to eq "2, 3, 5"}
-  specify { expect(`ruby ./eratos.rb 7`).to eq "2, 3, 5, 7"}
-  specify { expect(`ruby ./eratos.rb 8`).to eq "2, 3, 5, 7"}
-  specify { expect(`ruby ./eratos.rb 9`).to eq "2, 3, 5, 7"}
-  specify { expect(`ruby ./eratos.rb 10`).to eq "2, 3, 5, 7"}
-  specify { expect(`ruby ./eratos.rb 30`).to eq "2, 3, 5, 7, 11, 13, 17, 19, 23, 29"}
-  specify { expect(`ruby ./eratos.rb 100`).to eq "2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97"}
+  # refs: http://oeis.org/A000040
+  primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271]
+  (2..271).each do |x|
+    specify { expect(`ruby ./eratos.rb #{x}`).to eq primes.select{|n| n <= x}.join(', ')}
+  end
 end
 
