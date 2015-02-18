@@ -6,9 +6,8 @@ class Eratos
     integers = (2..x).to_a
     return integers if integers.length == 1
     # 探索リストの先頭の数を素数リストに移動し、その倍数を探索リストから篩い落とす
-    primes = [integers.first]
-    integers = integers.select {|i| i.modulo(primes.last) != 0}
     # 上記の篩い落とし操作を探索リストの先頭値がxの平方根に達するまで行う
+    primes = []
     while integers.first <= Math.sqrt(x)
       primes << integers.shift
       integers = integers.select {|i| i.modulo(primes.last) != 0}
